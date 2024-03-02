@@ -1,5 +1,6 @@
 package com.example.pokedex.network;
 
+import com.example.pokedex.network.models.PokemonByIDResponse;
 import com.example.pokedex.network.models.PokemonListResponse;
 
 import retrofit2.Call;
@@ -23,5 +24,10 @@ public class PokemonLoader implements PokemonAPI {
     @Override
     public Call<PokemonListResponse> getPokemonList() {
         return pokemonAPI.getPokemonList();
+    }
+
+    @Override
+    public Call<PokemonByIDResponse> getPokemonById(String id) {
+        return pokemonAPI.getPokemonById(id);
     }
 }

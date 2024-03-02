@@ -1,6 +1,7 @@
 package com.example.pokedex.pokemon;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pokedex.PokemonDetailActivity;
 import com.example.pokedex.R;
 import com.example.pokedex.network.models.Pokemon;
+import com.example.pokedex.utils.Constant;
 
 import java.util.List;
 
@@ -32,13 +35,24 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PokemonViewHolder holder, final int i) {
+    public void onBindViewHolder(@NonNull PokemonViewHolder holder, int i) {
         holder.tvPokemonName.setText(pokemonList.get(i).getName());
 
-        holder.llPokemonContainer.setOnClickListener(new View.OnClickListener() {
+        holder.tvPokemonName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = pokemonList.get(i).getUrl();
+                String pokemonId = pokemonList.get(holder.getAdapterPosition()).getName();
+
+                Intent intent = new Intent(ctx, PokemonDetailActivity.class);
+                intent.putExtra(Constant.EXTRA_POKEMON_ID, pokemonId);
+                ctx.startActivity(intent);
+            }
+        });
+        holder.btPokemonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pokemonList.remove(holder.getAdapterPosition());
+                notifyItemRemoved(holder.getAdapterPosition());
             }
         });
     }

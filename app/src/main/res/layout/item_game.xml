@@ -16,21 +16,22 @@
         android:weightSum="100"
         android:padding="10dp">
 
+        <ImageView
+            android:src="@drawable/game"
+            android:layout_weight="10"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+
         <TextView
-            android:id="@+id/tvPokemonName"
+            android:id="@+id/tvGame"
+            android:layout_weight="90"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="POKEMON"
-            android:layout_weight="80"
+            android:text="GAME TITLE"
             android:textSize="15sp"
             android:textStyle="bold" />
+        
 
-        <Button
-            android:id="@+id/btPokemonDelete"
-            android:text="DELETE"
-            android:layout_weight="20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
